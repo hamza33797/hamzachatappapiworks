@@ -1,1 +1,16 @@
 node_modules
+
+index.js
+
+.gitignore
+
+Api/
+
+package-lock.json
+
+package.json
+
+profileuploads/
+
+server.js
+
