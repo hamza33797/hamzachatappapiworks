@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose
-  .connect('mongodb+srv://hamzajilani45:aUNwwxw5LLuVgsoA@cluster0.ruptfiw.mongodb.net/?retryWrites=true&w=majority'
+  .connect('mongodb+srv://sevensol916:GaiHUJC2Cj3mKh4F@cluster0.ruptfiw.mongodb.net/?retryWrites=true&w=majority'
 )
   .then(() => {
     console.log("DB Connetion Successfull");
