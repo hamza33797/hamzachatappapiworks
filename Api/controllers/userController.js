@@ -20,6 +20,8 @@ module.exports.login = async (req, res, next) => {
 module.exports.register = async (req, res, next) => {
   try {
     const { username, phoneno} = req.body;
+    console.log(username);
+    console.log(phoneno);
     const usernameCheck = await User.findOne({ username });
     if (usernameCheck)
       return res.json({ msg: "Username already used", status: false });
