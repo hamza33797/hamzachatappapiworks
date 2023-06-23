@@ -1,5 +1,11 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const Sendbird = require('sendbird');
+
+// Initialize Sendbird with your API token
+const APP_ID = 'E5EDE0D3-840E-468E-8C32-7A8472610B3C';
+
+const sendbird = new Sendbird({ appId: APP_ID });
 
 module.exports.login = async (req, res, next) => {
   try {
@@ -16,15 +22,22 @@ module.exports.login = async (req, res, next) => {
     next(ex);
   }
 };
-
+const createUser = async (userId, nickname) => {
+  try {
+    const user = await sendbird.createUser({ userId, nickname });
+    console.log('User created:', user);
+  } catch (error) {
+    console.error('Error creating user:', error);
+  }
+};
 module.exports.register = async (req, res, next) => {
   try {
     const { username, phoneno} = req.body;
     console.log(username);
     console.log(phoneno);
-    const usernameCheck = await User.findOne({ username });
-    if (usernameCheck)
-      return res.json({ msg: "Username already used", status: false });
+    // const usernameCheck = await User.findOne({ username });
+    // if (usernameCheck)
+    //   return res.json({ msg: "Username already used", status: false });
     const phonenoCheck = await User.findOne({ phoneno });
 
     if (phonenoCheck)
@@ -35,6 +48,7 @@ module.exports.register = async (req, res, next) => {
       phoneno,
       username,
     });
+    createUser(user._id, user.username);
 
     return res.json({msg: "Account Registor", status: true, user });
   } catch (ex) {
