@@ -12,7 +12,7 @@ const {
   const multer = require('multer');
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'profileuploads/'); // Directory where uploaded files will be stored
+      cb(null, './profileuploads/'); // Directory where uploaded files will be stored
     },
     filename: (req, file, cb) => {
       cb(null, Date.now() + '-' + file.originalname); // File name will be the current timestamp + original file name
