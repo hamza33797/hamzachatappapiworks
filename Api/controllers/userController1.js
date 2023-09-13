@@ -65,7 +65,7 @@ module.exports.register = async (req, res, next) => {
       cnic_pic2,
 
     });
-    sendotp1('+92',phoneno.substring(1))
+    // sendotp1('+92',phoneno.substring(1))
 
     return res.json({msg: "Account Registor", status: true, user });
   } catch (ex) {
